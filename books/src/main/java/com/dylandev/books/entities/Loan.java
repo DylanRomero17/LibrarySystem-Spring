@@ -5,29 +5,29 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @Entity
-public class Book {
+@NoArgsConstructor
+public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    private String title;
-
-    @NotBlank
-    private String author;
-
     @NotNull
-    private Integer pages;
+    private LocalDate loanDate;
 
-    @NotNull
-    private Double price;
+    @NotBlank
+    private String loanStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Users user;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Employee employee;
+
 }
