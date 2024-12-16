@@ -30,4 +30,11 @@ public class Book {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
+
+    @NotNull
+    private Integer available;
+
+    @NotNull
+    private Integer borrowed;
+
 }
